@@ -20,6 +20,10 @@ public class Member {
 
 	private List<Opinion> opinions;
 
+	public Member() {
+		super();
+	}
+
 	public Member(String lastName, String firstName, String login, String password, boolean isAdmin) {
 		super();
 		this.lastName = lastName;

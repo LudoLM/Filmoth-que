@@ -4,17 +4,28 @@ import java.util.List;
 
 public class Movie {
 
-	private Long id;
-	private String title;
-	private int year;
-	private int duration;
-	private String synopsis;
-	private Participant director;
-	private Genre genre;
-	private Member member;
-	private List<Participant> actor;
-	private List<Opinion> opinions;
+	protected long id;
+	protected String title;
+	protected int year;
+	protected int duration;
+	protected String synopsis;
 
+	// --
+	protected Genre genre;
+	// --
+	protected List<Opinion> opinions;
+	//--
+	protected Participant director;
+	protected List<Participant> actors;
+
+	/**
+	 * Le constructeur
+	 * @param id
+	 * @param title
+	 * @param year
+	 * @param duration
+	 * @param synopsis
+	 */
 	public Movie(long id, String title, int year, int duration, String synopsis) {
 		super();
 		this.id = id;
@@ -24,110 +35,139 @@ public class Movie {
 		this.synopsis = synopsis;
 	}
 
-	public Movie(long id, String title, int year, int duration, String synopsis, Participant director, Genre genre,
-			Member member, List<Participant> actor, List<Opinion> opinions) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.year = year;
-		this.duration = duration;
-		this.synopsis = synopsis;
-		this.director = director;
-		this.genre = genre;
-		this.member = member;
-		this.actor = actor;
-		this.opinions = opinions;
-	}
-
-	public Long getId() {
+	/**
+	 * @return the id
+	 */
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
 		this.id = id;
 	}
-
-	public void setActor(List<Participant> actor) {
-		this.actor = actor;
-	}
-
+	/**
+	 * @return the title
+	 */
 	public String getTitle() {
 		return title;
 	}
-
+	/**
+	 * @param title the title to set
+	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
+	/**
+	 * @return the year
+	 */
 	public int getYear() {
 		return year;
 	}
-
+	/**
+	 * @param year the year to set
+	 */
 	public void setYear(int year) {
 		this.year = year;
 	}
-
+	/**
+	 * @return the duration
+	 */
 	public int getDuration() {
 		return duration;
 	}
-
+	/**
+	 * @param duration the duration to set
+	 */
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
-
+	/**
+	 * @return the synopsis
+	 */
 	public String getSynopsis() {
 		return synopsis;
 	}
-
+	/**
+	 * @param synopsis the synopsis to set
+	 */
 	public void setSynopsis(String synopsis) {
 		this.synopsis = synopsis;
 	}
-
-	public Participant getDirector() {
-		return director;
-	}
-
-	public void setDirector(Participant director) {
-		this.director = director;
-	}
-
-	public List<Participant> getActor() {
-		return actor;
-	}
-
-	public void setActors(List<Participant> actor) {
-		this.actor = actor;
-	}
-
-	public List<Opinion> getOpinions() {
-		return opinions;
-	}
-
-	public void setOpinions(List<Opinion> opinions) {
-		this.opinions = opinions;
-	}
-
+	/**
+	 * @return the genre
+	 */
 	public Genre getGenre() {
 		return genre;
 	}
-
+	/**
+	 * @param genre the genre to set
+	 */
 	public void setGenre(Genre genre) {
 		this.genre = genre;
 	}
-
-	public Member getMember() {
-		return member;
+	/**
+	 * @return the reviews
+	 */
+	public List<Opinion> getReviews() {
+		return opinions;
+	}
+	/**
+	 * @param reviews the reviews to set
+	 */
+	public void setReviews(List<Opinion> reviews) {
+		this.opinions = reviews;
+	}
+	/**
+	 * @return the director
+	 */
+	public Participant getDirector() {
+		return director;
+	}
+	/**
+	 * @param director the director to set
+	 */
+	public void setDirector(Participant director) {
+		this.director = director;
+	}
+	/**
+	 * @return the actors
+	 */
+	public List<Participant> getActors() {
+		return actors;
+	}
+	/**
+	 * @param actors the actors to set
+	 */
+	public void setActors(List<Participant> actors) {
+		this.actors = actors;
 	}
 
-	public void setMember(Member member) {
-		this.member = member;
-	}
 
 	@Override
 	public String toString() {
-		return "Movie [id=" + id + ", title=" + title + ", year=" + year + ", duration=" + duration + ", synopsis="
-				+ synopsis + ", director=" + director + ", genre=" + genre + ", member=" + member + ", actor=" + actor
-				+ ", opinions=" + opinions + "]";
-	}
+		// Prepare affichage directeur
+		String directorString = String.format("Director : %s", director);
 
+		// Concatenation à la main
+		String actorsString = "Actors : [";
+		int index = 0;
+		for(Participant actor : actors) {
+			if (index > 0) {
+				actorsString += String.format(",\n%s", actor);
+			}
+			else {
+				actorsString += String.format("%s", actor);
+			}
+			index++;
+		}
+		actorsString += "]";
+
+		return String.format("Movie [id=%d] \ntitle: %s \nSynopsis: %s \n %s \n %s", this.id, this.title, this.synopsis, directorString, actorsString);
+
+		// actors toString natif d'une List
+		// return String.format("Movie [id=%d] \ntitle: %s \nSynopsis: %s \n %s \n %s", this.id, this.title, this.synopsis, directorString, actors);
+	}
 }

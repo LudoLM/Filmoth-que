@@ -1,51 +1,46 @@
 package fr.eni.movielibrary.bo;
 
-import java.util.List;
-
 public class Genre {
 
-	private long id;
+	protected int id;
+	protected String label;
 
-	public Genre(long id, String label) {
+	/**
+	 * @param id
+	 * @param label
+	 */
+	public Genre(int id, String label) {
 		super();
 		this.id = id;
 		this.label = label;
 	}
 
-	private String label;
-	private List<Movie> movies;
-
-	public Genre(String label) {
-		super();
-		this.label = label;
-	}
-
-	public Genre(int i, String string) {
-		// TODO Auto-generated constructor stub
-	}
-
-	public long getId() {
+	/**
+	 * @return the id
+	 */
+	public int getId() {
 		return id;
 	}
-
-	public void setId(long id) {
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
 		this.id = id;
 	}
-
-	public List<Movie> getMovies() {
-		return movies;
-	}
-
-	public void setMovies(List<Movie> movies) {
-		this.movies = movies;
-	}
-
+	/**
+	 * @return the label
+	 */
 	public String getLabel() {
 		return label;
 	}
-
+	/**
+	 * @param label the label to set
+	 */
 	public void setLabel(String label) {
 		this.label = label;
 	}
+
+
+
 
 }

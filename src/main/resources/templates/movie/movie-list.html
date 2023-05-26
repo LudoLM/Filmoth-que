@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Liste des films</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/vendor/uikit/css/uikit.min.css" />
+  <script src="/vendor/uikit/js/uikit.min.js"></script>
+  <script src="/vendor/uikit/js/uikit-icons.min.js"></script>
+</head>
+<body>
+
+<div class="uk-section uk-article">
+  <div class="uk-container">
+    <h2 class="uk-text-bold uk-h1 uk-margin-remove-adjacent"> Liste des Films</h2>
+
+    <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
+
+      <!-- Pour chaque personne -->
+      <div th:each="movie : ${movies}">
+        <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+          <h3 class="uk-card-title" th:text="${movie.title}"></h3>
+          <h3 class="uk-card-title" th:text="${movie.duration}"></h3>
+          <h3 class="uk-card-title" th:text="${movie.genre.label}"></h3>
+          <h3 class="uk-card-title" th:value="${movie.director.firstname + ' ' +movie.director.lastname}"></h3>
+          <p th:text="${movie.synopsis}"></p>
+
+          <a th:href="@{'/movie/' + ${movie.id}}">Voir</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
